@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment - Instruction</title>
+</head>
+<body>
+    
+        <input type="hidden" name="attendance_number" value="{{ attendance_number }}">
+        <h1>実験の説明</h1>
+
+        <div id="page1">
+            <p>① こんにちは</p>
+            <button onclick="nextPage(2)">次に進む</button>
+        </div>
+    
+        <div id="page2" style="display: none;">
+            <p>② こんちは</p>
+            <button onclick="nextPage(3)">次に進む</button>
+        </div>
+    
+        <div id="page3" style="display: none;">
+            <p>③ こんにちわわ</p>
+            <button onclick="nextPage(4)">次に進む</button>
+        </div>
+    
+        <div id="page4" style="display: none;">
+            <p>④ こんちくび</p>
+            <button onclick="startCountdown()">実験を開始する</button>
+        </div>
+        <p>出席番号: {{ attendance_number }}</p>
+    
+
+    <script>
+        function nextPage(pageNumber) {
+            document.getElementById('page' + pageNumber).style.display = 'block';
+            document.getElementById('page' + (pageNumber - 1)).style.display = 'none';
+        }
+
+        function startCountdown() {
+            // カウントダウンに遷移する処理
+            window.location.href = "/countdown?attendance_number={{ attendance_number }}";
+        }
+    </script>
+</body>
+</html>
