@@ -1,25 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Experiment - Index</title>
-</head>
-<body>
-    <form id="indexForm" method="post" action="{{ url_for('index') }}"></form>
-        <label for="attendance_number">出席番号を入力してください:</label>
-        <input type="text" id="attendance_number" name="attendance_number"  required>
-        <button type="submit">次に進む</button>
-    </form>
-</body>
-<script>
-    function submitForm() {
-        // フォームのサブミットを手動で実行
-        document.getElementById('indexForm').submit();
-    }
-</script>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -27,10 +5,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Experiment - Index</title>
     <style>
-        /* スタイルは必要に応じて追加 */
-        .hidden {
-            display: none;
+
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* 横画面時のスタイル */
+@media only screen and (orientation: landscape) {
+    body {
+        width: 100vw;
+        height: 100vh;
+    }
+}
+
+/* 縦画面時のスタイル */
+@media only screen and (orientation: portrait) {
+    body {
+        display: none; /* または他の適切なスタイルを指定して非表示にする */
+    }
+}
+#indexPage 
+{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
         }
+    
+    label {
+            margin-bottom: 10px;
+        }
+
+    #attendance_number {
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+     button {
+            background-color: yellow;
+            color: black;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #instructionsPage1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* スタイルは必要に応じて追加 */
+.hidden {
+    display: none;
+}
+
+/* 各ページのスタイル */
+#page1,
+#page2,
+#page3,
+#page4 {
+    text-align: center;
+}
+
+button {
+    margin-top: 20px; /* ボタンと説明文の間に余白を追加 */
+    padding: 10px 20px;
+    cursor: pointer;
+}
+#countdownPage1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#countdown1 {
+    font-size: 48px; /* 任意のフォントサイズ */
+    font-weight: bold;
+}
+
+#testPage1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+#wordDisplay1 {
+    font-size: 24px; /* 任意のフォントサイズ */
+    font-weight: bold;
+}
+
+.buttonContainer1 {
+    display: flex;
+    margin-top: 20px; /* ボタンとワードの間に余白を追加 */
+}
+
+button {
+    width: 80px; /* 任意の幅 */
+    height: 200px; /* 任意の高さ */
+    font-size: 18px; /* 任意のフォントサイズ */
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    margin: 0 10px; /* ボタン同士の間に余白を追加 */
+}
+
+
+
+        
     </style>
 </head>
 <body>
@@ -40,210 +130,1157 @@
     <div id="indexPage">
         <label for="attendance_number">やまP眠いよ:</label>
         <input type="text" id="attendance_number" required>
-        <button onclick="showInstructions()">パーン</button>
+        <button onclick="showInstructions1()">パーン</button>
     </div>
-    <script>
-        let attendance_number;
-        function showInstructions() {
-        attendanceNumber = document.getElementById('attendance_number').value;
-        document.getElementById('indexPage').classList.add('hidden');
-        document.getElementById('instructionsPage').classList.remove('hidden');
-        }
-    </script>
-    
-    <script>
-        function nextPage(pageNumber) {
-            document.getElementById('page' + pageNumber).classList.remove('hidden');
-            document.getElementById('page' + (pageNumber - 1)).classList.add('hidden');
-        }
-    </script> 
 
-    <!-- イントロダクション -->
+    <!-- イントロダクション1 -->
 
-    <div id="instructionsPage" class="hidden">
-        <h1>実験の説明</h1>
+    <div id="instructionsPage1" class="hidden">
+        <h1>1実験の説明</h1>
 
         <div id="page1">
             <p>① こんにちは</p>
-            <button onclick="nextPage(2)">次に進む</button>
+            <button onclick="nextPage1(2)">次に進む</button>
         </div>
     
         <div id="page2" class="hidden">
             <p>② こんちは</p>
-            <button onclick="nextPage(3)">次に進む</button>
+            <button onclick="nextPage1(3)">次に進む</button>
         </div>
     
         <div id="page3" class="hidden">
             <p>③ こんにちわわ</p>
-            <button onclick="nextPage(4)">次に進む</button>
+            <button onclick="nextPage1(4)">次に進む</button>
         </div>
     
         <div id="page4" class="hidden">
             <p>④ こんちくび</p>
-            <button onclick="startCountdown()">実験を開始する</button>
+            <button onclick="startCountdown1()">実験を開始する</button>
         </div>
-    </div>
-    
-    <!-- カウントダウン -->
-
-    <div id="countdownPage" class="hidden">
-        <div id="countdown">3</div>
     </div>
 
     <script>
-        function startCountdown() {
-            document.getElementById('instructionsPage').classList.add('hidden');
-            document.getElementById('countdownPage').classList.remove('hidden');
+        let attendance_number;
+        function showInstructions1() {
+            attendanceNumber = document.getElementById('attendance_number').value;
+            document.getElementById('indexPage').classList.add('hidden');
+            document.getElementById('instructionsPage1').classList.remove('hidden');
+        }
+    </script>
+
+    <!-- カウントダウン1 -->
+
+    <div id="countdownPage1" class="hidden">
+        <div id="countdown1">3</div>
+    </div>
+
+    <script>
+        function nextPage1(pageNumber) {
+            document.getElementById('page' + pageNumber).classList.remove('hidden');
+            document.getElementById('page' + (pageNumber - 1)).classList.add('hidden');
+        }
+    </script>
+
+    <script>
+        function startCountdown1() {
+            document.getElementById('instructionsPage1').classList.add('hidden');
+            document.getElementById('countdownPage1').classList.remove('hidden');
 
             let count = 3;
             function countdown() {
                 if (count > 0) {
-                    document.getElementById('countdown').textContent = count;
+                    document.getElementById('countdown1').textContent = count;
                     count--;
                     setTimeout(countdown, 1000);
                 } else {
-                    document.getElementById('countdownPage').classList.add('hidden');
-                    document.getElementById('testPage').classList.remove('hidden');
-                    displayNextWord();
+                    document.getElementById('countdownPage1').classList.add('hidden');
+                    document.getElementById('testPage1').classList.remove('hidden');
+                    displayNextWord1();
                 }
             }
             countdown();
         }
     </script>
 
-    <!-- テスト -->
+    <!-- テスト1 -->
 
-    <div id="testPage" class="hidden">
-        <p id="wordDisplay"></p>
-        <div class="buttonContainer">
-            <button onclick="submitAnswer('自分')">自分</button>
-            <button onclick="submitAnswer('他人')">他人</button>
+    <div id="testPage1" class="hidden">
+        <p id="wordDisplay1"></p>
+        <div class="buttonContainer1">
+            <button onclick="submitAnswer1('自分')">自分</button>
+            <button onclick="submitAnswer1('他人')">他人</button>
         </div>
     </div>
 
     <script>
-        let currentWordIndex = 0;
-        let timeTakenCounter = 1;
-        let end_time;
-        let time_taken1 = 0;
-        let time_taken2 = 0;
-        let time_taken3 = 0;
-        let time_taken4 = 0;
-        let start_time;
-
-         var wordList = [
+        let currentWordIndex1 = 0;
+        var wordList1 = [
             { word: "中学生", correctChoice: "自分" },
             { word: "教師", correctChoice: "他人" },
             { word: "生徒", correctChoice: "自分" },
-            { word: "他者", correctChoice: "他人" }
+            { word: "他者", correctChoice: "他人" },
+            { word: "中学生", correctChoice: "自分" },
+            { word: "教師", correctChoice: "他人" },
+            { word: "生徒", correctChoice: "自分" },
+            { word: "他者", correctChoice: "他人" },
+            { word: "中学生", correctChoice: "自分" },
+            { word: "教師", correctChoice: "他人" },
+            { word: "生徒", correctChoice: "自分" },
+            { word: "他者", correctChoice: "他人" },
+            { word: "中学生", correctChoice: "自分" },
+            
         ];
 
-        function displayNextWord() {
-            start_time = new Date().getTime()
-            document.getElementById('wordDisplay').innerText = wordList[currentWordIndex].word;
-            
+        function displayNextWord1() {
+            start_time1 = new Date().getTime()
+            document.getElementById('wordDisplay1').innerText = wordList1[currentWordIndex1].word;
         }
-        function submitAnswer(choice) {
-            const correctChoice = wordList[currentWordIndex].correctChoice;
+    </script>
+
+    <script>
+        function submitAnswer1(choice) {
+            const correctChoice = wordList1[currentWordIndex1].correctChoice;
             const isCorrect = choice === correctChoice;
-            end_time = new Date().getTime()
-            
-            const time_diff = (end_time - start_time) / 1000; // ミリ秒から秒に変換
+            end_time1 = new Date().getTime()
+            const time_diff = (end_time1 - start_time1) / 1000;
+         
 
-
-            // 各ワードごとに time_taken を更新
-            if (currentWordIndex === 0) {
+            if (currentWordIndex1 === 0) {
                 time_taken1 = time_diff;
-            } else if (currentWordIndex === 1) {
+            } else if (currentWordIndex1 === 1) {
                 time_taken2 = time_diff;
-            } else if (currentWordIndex === 2) {
+            } else if (currentWordIndex1 === 2) {
                 time_taken3 = time_diff;
-            } else if (currentWordIndex === 3) {
-                time_taken4 = time_diff;}
+            } else if (currentWordIndex1 === 3) {
+                time_taken4 = time_diff;
+            } else if (currentWordIndex1 === 4) {
+                time_taken5 = time_diff;
+            } else if (currentWordIndex1 === 5) {
+                time_taken6 = time_diff;
+            }  else if (currentWordIndex1 === 6) {
+                time_taken7 = time_diff;
+            }  else if (currentWordIndex1 === 7) {
+                time_taken8 = time_diff;
+            }  else if (currentWordIndex1 === 8) {
+                time_taken9 = time_diff;
+            }  else if (currentWordIndex1 === 9) {
+                time_taken10 = time_diff;
+            }  else if (currentWordIndex1 === 10) {
+                time_taken11 = time_diff;
+            }  else if (currentWordIndex1 === 11) {
+                time_taken12 = time_diff;
+            }  else if (currentWordIndex1 === 12) {
+                time_taken13 = time_diff;
+            }  else if (currentWordIndex1 === 13) {
+                time_taken14 = time_diff;
+            }
+            
 
             if (isCorrect) {
-                currentWordIndex++;
-                
-                if (currentWordIndex < wordList.length) {
-                    // 次の単語を表示
-                    displayNextWord();
-                    start_time = new Date().getTime()
+                currentWordIndex1++;
+
+                if (currentWordIndex1 < wordList1.length) {
+                    displayNextWord1();
+                    start_time1 = new Date().getTime();
                 } else {
-                    // // 最後の問題に正解した場合、結果ページに遷移
-                    // document.getElementById('testPage').classList.add('hidden');
-                    // document.getElementById('resultPage').classList.remove('hidden');
-                    showResult();
+                    document.getElementById('testPage1').classList.add('hidden');
+                    document.getElementById('instructionsPage2').classList.remove('hidden');
                 }
-            } else {
-                // 不正解の場合の処理を追加することも可能
             }
         }
-    // 最初の単語を表示
-    displayNextWord();
 
     </script>
+
+    <!-- イントロダクション2 -->
+
+    <div id="instructionsPage2" class="hidden">
+        <h1>2実験の説明</h1>
+
+        <div id="page5">
+            <p>① こんにちは</p>
+            <button onclick="startCountdown2()">実験を開始する</button>
+        </div>
+    
+        </div>
+    </div>
+
+    <script>
+        function showInstructions2() {
+            attendanceNumber = document.getElementById('attendance_number').value;
+            document.getElementById('indexPage').classList.add('hidden');
+            document.getElementById('instructionsPage2').classList.remove('hidden');
+        }
+    </script>
+
+    
+
+    <!-- カウントダウン2 -->
+
+    <div id="countdownPage2" class="hidden">
+        <div id="countdown2">3</div>
+    </div>
+
+    <script>
+        function startCountdown2() {
+            document.getElementById('instructionsPage2').classList.add('hidden');
+            document.getElementById('countdownPage2').classList.remove('hidden');
+
+            let count = 3;
+            function countdown2() {
+                if (count > 0) {
+                    document.getElementById('countdown2').textContent = count;
+                    count--;
+                    setTimeout(countdown2, 1000);
+                } else {
+                    document.getElementById('countdownPage2').classList.add('hidden');
+                    document.getElementById('testPage2').classList.remove('hidden');
+                    displayNextWord2();
+                }
+            }
+            countdown2();
+        }
+    </script>
+
+    <!-- テスト2 -->
+
+    <div id="testPage2" class="hidden">
+        <p id="wordDisplay2"></p>
+        <div class="buttonContainer2">
+            <button onclick="submitAnswer2('自分')">自分</button>
+            <button onclick="submitAnswer2('他人')">他人</button>
+        </div>
+    </div>
+
+    <script>
+        let currentWordIndex2 = 0;
+        var wordList2 = [
+            { word: "中学生", correctChoice: "自分" },
+            { word: "教師", correctChoice: "他人" },
+            { word: "生徒", correctChoice: "自分" },
+            { word: "他者", correctChoice: "他人" },
+            { word: "中学生", correctChoice: "自分" },
+            { word: "教師", correctChoice: "他人" },
+            { word: "生徒", correctChoice: "自分" },
+            { word: "他者", correctChoice: "他人" },
+            { word: "中学生", correctChoice: "自分" },
+            { word: "教師", correctChoice: "他人" },
+            { word: "生徒", correctChoice: "自分" },
+            { word: "他者", correctChoice: "他人" },
+            { word: "中学生", correctChoice: "自分" },
+        ];
+
+        function displayNextWord2() {
+            start_time2 = new Date().getTime()
+            document.getElementById('wordDisplay2').innerText = wordList2[currentWordIndex2].word;
+        }
+
+
+    function submitAnswer2(choice) {
+        const correctChoice = wordList2[currentWordIndex2].correctChoice;
+            const isCorrect2 = choice === correctChoice;
+            end_time2 = new Date().getTime()
+            const time_diff = (end_time2 - start_time2) / 1000;
+         
+
+            if (currentWordIndex2 === 0) {
+                time_taken21 = time_diff;
+            } else if (currentWordIndex2 === 1) {
+                time_taken22 = time_diff;
+            } else if (currentWordIndex2 === 2) {
+                time_taken23 = time_diff;
+            } else if (currentWordIndex2 === 3) {
+                time_taken24 = time_diff;
+            } else if (currentWordIndex2 === 4) {
+                time_taken25 = time_diff;
+            } else if (currentWordIndex2 === 5) {
+                time_taken26 = time_diff;
+            }  else if (currentWordIndex2 === 6) {
+                time_taken27 = time_diff;
+            }  else if (currentWordIndex2 === 7) {
+                time_taken28 = time_diff;
+            }  else if (currentWordIndex2 === 8) {
+                time_taken29 = time_diff;
+            }  else if (currentWordIndex2 === 9) {
+                time_taken30 = time_diff;
+            }  else if (currentWordIndex2 === 10) {
+                time_taken311 = time_diff;
+            }  else if (currentWordIndex2 === 11) {
+                time_taken412 = time_diff;
+            }  else if (currentWordIndex2 === 12) {
+                time_taken513 = time_diff;
+            }  else if (currentWordIndex2 === 13) {
+                time_taken614 = time_diff;
+            }
+
+        if (isCorrect2) {
+            currentWordIndex2++;
+
+            if (currentWordIndex2 < wordList2.length) {
+                displayNextWord2();
+                start_time2 = new Date().getTime();
+            } else {
+                document.getElementById('testPage2').classList.add('hidden');
+                document.getElementById('instructionsPage3').classList.remove('hidden');
+                
+            }
+        }
+    }
+    
+</script>
+
+      
+</script>
+
+<!-- イントロダクション3 -->
+
+<div id="instructionsPage3" class="hidden">
+    <h1>3実験の説明</h1>
+
+    <div id="page6">
+        <p>① こんにちは</p>
+        <button onclick="startCountdown3()">実験を開始する</button>
+    </div>
+
+    </div>
+</div>
+
+<script>
+    function showInstructions3() {
+        attendanceNumber = document.getElementById('attendance_number').value;
+        document.getElementById('indexPage').classList.add('hidden');
+        document.getElementById('instructionsPage3').classList.remove('hidden');
+    }
+</script>
+
+
+
+<!-- カウントダウン3 -->
+
+<div id="countdownPage3" class="hidden">
+    <div id="countdown3">3</div>
+</div>
+
+<script>
+    function startCountdown3() {
+        document.getElementById('instructionsPage3').classList.add('hidden');
+        document.getElementById('countdownPage3').classList.remove('hidden');
+
+        let count = 3;
+        function countdown3() {
+            if (count > 0) {
+                document.getElementById('countdown3').textContent = count;
+                count--;
+                setTimeout(countdown3, 1000);
+            } else {
+                document.getElementById('countdownPage3').classList.add('hidden');
+                document.getElementById('testPage3').classList.remove('hidden');
+                displayNextWord3();
+            }
+        }
+        countdown3();
+    }
+</script>
+
+<!-- テスト3 -->
+
+<div id="testPage3" class="hidden">
+    <p id="wordDisplay3"></p>
+    <div class="buttonContainer3">
+        <button onclick="submitAnswer3('自分')">自分</button>
+        <button onclick="submitAnswer3('他人')">他人</button>
+    </div>
+</div>
+
+<script>
+    let currentWordIndex3 = 0;
+    var wordList3 = [
+    { word: "中学生", correctChoice: "自分" },
+            { word: "教師", correctChoice: "他人" },
+            { word: "生徒", correctChoice: "自分" },
+            { word: "他者", correctChoice: "他人" },
+            { word: "中学生", correctChoice: "自分" },
+            { word: "教師", correctChoice: "他人" },
+            { word: "生徒", correctChoice: "自分" },
+            { word: "他者", correctChoice: "他人" },
+            { word: "中学生", correctChoice: "自分" },
+            { word: "教師", correctChoice: "他人" },
+            { word: "生徒", correctChoice: "自分" },
+            { word: "他者", correctChoice: "他人" },
+            { word: "中学生", correctChoice: "自分" },
+    ];
+
+    function displayNextWord3() {
+        start_time3 = new Date().getTime()
+        document.getElementById('wordDisplay3').innerText = wordList3[currentWordIndex3].word;
+    }
+
+
+
+
+function submitAnswer3(choice) {
+    const correctChoice = wordList3[currentWordIndex3].correctChoice;
+        const isCorrect3 = choice === correctChoice;
+        end_time3 = new Date().getTime()
+        const time_diff = (end_time3 - start_time3) / 1000;
+     
+
+        if (currentWordIndex3 === 0) {
+                time_taken31 = time_diff;
+            } else if (currentWordIndex3 === 1) {
+                time_taken32 = time_diff;
+            } else if (currentWordIndex3 === 2) {
+                time_taken33 = time_diff;
+            } else if (currentWordIndex3 === 3) {
+                time_taken34 = time_diff;
+            } else if (currentWordIndex3=== 4) {
+                time_taken35 = time_diff;
+            } else if (currentWordIndex3 === 5) {
+                time_taken36 = time_diff;
+            }  else if (currentWordIndex3 === 6) {
+                time_taken37 = time_diff;
+            }  else if (currentWordIndex3 === 7) {
+                time_taken38 = time_diff;
+            }  else if (currentWordIndex3 === 8) {
+                time_taken39 = time_diff;
+            }  else if (currentWordIndex3 === 9) {
+                time_taken310 = time_diff;
+            }  else if (currentWordIndex3 === 10) {
+                time_taken311 = time_diff;
+            }  else if (currentWordIndex3 === 11) {
+                time_taken312 = time_diff;
+            }  else if (currentWordIndex3 === 12) {
+                time_taken313 = time_diff;
+            }  else if (currentWordIndex3 === 13) {
+                time_taken314 = time_diff;
+            }
+
+    if (isCorrect3) {
+        currentWordIndex3++;
+
+        if (currentWordIndex3 < wordList3.length) {
+            displayNextWord3();
+            start_time3 = new Date().getTime();
+        } else {
+            document.getElementById('testPage3').classList.add('hidden');
+            document.getElementById('instructionsPage4').classList.remove('hidden');
+            
+        }
+    }
+}
+
+</script>
+
+
+
+
+
+    
+</script>
+<!-- イントロダクション4 -->
+
+<div id="instructionsPage4" class="hidden">
+    <h1>4実験の説明</h1>
+
+    <div id="page6">
+        <p>① こんにちは</p>
+        <button onclick="startCountdown4()">実験を開始する</button>
+    </div>
+
+    </div>
+</div>
+
+<script>
+    function showInstructions4() {
+        attendanceNumber = document.getElementById('attendance_number').value;
+        document.getElementById('indexPage').classList.add('hidden');
+        document.getElementById('instructionsPage4').classList.remove('hidden');
+    }
+</script>
+
+
+
+<!-- カウントダウン4 -->
+
+<div id="countdownPage4" class="hidden">
+    <div id="countdown4">3</div>
+</div>
+
+<script>
+    function startCountdown4() {
+        document.getElementById('instructionsPage4').classList.add('hidden');
+        document.getElementById('countdownPage4').classList.remove('hidden');
+
+        let count = 3;
+        function countdown4() {
+            if (count > 0) {
+                document.getElementById('countdown4').textContent = count;
+                count--;
+                setTimeout(countdown4, 1000);
+            } else {
+                document.getElementById('countdownPage4').classList.add('hidden');
+                document.getElementById('testPage4').classList.remove('hidden');
+                displayNextWord4();
+            }
+        }
+        countdown4();
+    }
+</script>
+
+<!-- テスト4 -->
+
+<div id="testPage4" class="hidden">
+    <p id="wordDisplay4"></p>
+    <div class="buttonContainer4">
+        <button onclick="submitAnswer4('自分')">自分</button>
+        <button onclick="submitAnswer4('他人')">他人</button>
+    </div>
+</div>
+
+<script>
+    let currentWordIndex4 = 0;
+    var wordList4 = [
+            { word: "中学生", correctChoice: "自分" },
+            { word: "教師", correctChoice: "他人" },
+            { word: "生徒", correctChoice: "自分" },
+            { word: "他者", correctChoice: "他人" },
+            { word: "中学生", correctChoice: "自分" },
+            { word: "教師", correctChoice: "他人" },
+            { word: "生徒", correctChoice: "自分" },
+            { word: "他者", correctChoice: "他人" },
+            { word: "中学生", correctChoice: "自分" },
+            { word: "教師", correctChoice: "他人" },
+            { word: "生徒", correctChoice: "自分" },
+            { word: "他者", correctChoice: "他人" },
+            { word: "中学生", correctChoice: "自分" },
+    ];
+
+    function displayNextWord4() {
+        start_time4 = new Date().getTime()
+        document.getElementById('wordDisplay4').innerText = wordList4[currentWordIndex4].word;
+    }
+
+
+
+
+function submitAnswer4(choice) {
+    const correctChoice = wordList4[currentWordIndex4].correctChoice;
+        const isCorrect4 = choice === correctChoice;
+        end_time4 = new Date().getTime()
+        const time_diff = (end_time4 - start_time4) / 1000;
+     
+
+        if (currentWordIndex4 === 0) {
+                time_taken41 = time_diff;
+            } else if (currentWordIndex4 === 1) {
+                time_taken42 = time_diff;
+            } else if (currentWordIndex4 === 2) {
+                time_taken43 = time_diff;
+            } else if (currentWordIndex4 === 3) {
+                time_taken44 = time_diff;
+            } else if (currentWordIndex4 === 4) {
+                time_taken45 = time_diff;
+            } else if (currentWordIndex4 === 5) {
+                time_taken46 = time_diff;
+            }  else if (currentWordIndex4 === 6) {
+                time_taken47 = time_diff;
+            }  else if (currentWordIndex4 === 7) {
+                time_taken48 = time_diff;
+            }  else if (currentWordIndex4 === 8) {
+                time_taken49 = time_diff;
+            }  else if (currentWordIndex4 === 9) {
+                time_taken410 = time_diff;
+            }  else if (currentWordIndex4 === 10) {
+                time_taken411 = time_diff;
+            }  else if (currentWordIndex4 === 11) {
+                time_taken412 = time_diff;
+            }  else if (currentWordIndex4 === 12) {
+                time_taken413 = time_diff;
+            }  else if (currentWordIndex4 === 13) {
+                time_taken414 = time_diff;
+            }
+
+    if (isCorrect4) {
+        currentWordIndex4++;
+
+        if (currentWordIndex4 < wordList4.length) {
+            displayNextWord4();
+            start_time4 = new Date().getTime();
+        } else {
+            document.getElementById('testPage4').classList.add('hidden');
+            document.getElementById('instructionsPage5').classList.remove('hidden');
+            
+        }
+    }
+}
+
+</script>
+
+
+
+
+
+    
+</script>
+<!-- イントロダクション5 -->
+
+<div id="instructionsPage5" class="hidden">
+    <h1>5実験の説明</h1>
+
+    <div id="page7">
+        <p>① こんにちは</p>
+        <button onclick="startCountdown5()">実験を開始する</button>
+    </div>
+
+    </div>
+</div>
+
+<script>
+    function showInstructions5() {
+        attendanceNumber = document.getElementById('attendance_number').value;
+        document.getElementById('indexPage').classList.add('hidden');
+        document.getElementById('instructionsPage4').classList.remove('hidden');
+    }
+</script>
+
+
+
+<!-- カウントダウン5 -->
+
+<div id="countdownPage5" class="hidden">
+    <div id="countdown5">3</div>
+</div>
+
+<script>
+    function startCountdown5() {
+        document.getElementById('instructionsPage5').classList.add('hidden');
+        document.getElementById('countdownPage5').classList.remove('hidden');
+
+        let count = 3;
+        function countdown5() {
+            if (count > 0) {
+                document.getElementById('countdown5').textContent = count;
+                count--;
+                setTimeout(countdown5, 1000);
+            } else {
+                document.getElementById('countdownPage5').classList.add('hidden');
+                document.getElementById('testPage5').classList.remove('hidden');
+                displayNextWord5();
+            }
+        }
+        countdown5();
+    }
+</script>
+
+<!-- テスト5 -->
+
+<div id="testPage5" class="hidden">
+    <p id="wordDisplay5"></p>
+    <div class="buttonContainer5">
+        <button onclick="submitAnswer5('自分')">自分</button>
+        <button onclick="submitAnswer5('他人')">他人</button>
+    </div>
+</div>
+
+<script>
+    let currentWordIndex5 = 0;
+    var wordList5 = [
+            { word: "中学生", correctChoice: "自分" },
+            { word: "教師", correctChoice: "他人" },
+            { word: "生徒", correctChoice: "自分" },
+            { word: "他者", correctChoice: "他人" },
+            { word: "中学生", correctChoice: "自分" },
+            { word: "教師", correctChoice: "他人" },
+            { word: "生徒", correctChoice: "自分" },
+            { word: "他者", correctChoice: "他人" },
+            { word: "中学生", correctChoice: "自分" },
+            { word: "教師", correctChoice: "他人" },
+            { word: "生徒", correctChoice: "自分" },
+            { word: "他者", correctChoice: "他人" },
+            { word: "中学生", correctChoice: "自分" },
+    ];
+
+    function displayNextWord5() {
+        start_time5 = new Date().getTime()
+        document.getElementById('wordDisplay5').innerText = wordList5[currentWordIndex5].word;
+    }
+
+
+
+
+function submitAnswer5(choice) {
+    const correctChoice = wordList5[currentWordIndex5].correctChoice;
+        const isCorrect5 = choice === correctChoice;
+        end_time5 = new Date().getTime()
+        const time_diff = (end_time5 - start_time5) / 1000;
+     
+
+        if (currentWordIndex5 === 0) {
+                time_taken51 = time_diff;
+            } else if (currentWordIndex5 === 1) {
+                time_taken52 = time_diff;
+            } else if (currentWordIndex5 === 2) {
+                time_taken53 = time_diff;
+            } else if (currentWordIndex5 === 3) {
+                time_taken54 = time_diff;
+            } else if (currentWordIndex5 === 4) {
+                time_taken55 = time_diff;
+            } else if (currentWordIndex5 === 5) {
+                time_taken56 = time_diff;
+            }  else if (currentWordIndex5 === 6) {
+                time_taken57 = time_diff;
+            }  else if (currentWordIndex5 === 7) {
+                time_taken58 = time_diff;
+            }  else if (currentWordIndex5 === 8) {
+                time_taken59 = time_diff;
+            }  else if (currentWordIndex5 === 9) {
+                time_taken510 = time_diff;
+            }  else if (currentWordIndex5 === 10) {
+                time_taken511 = time_diff;
+            }  else if (currentWordIndex5 === 11) {
+                time_taken512 = time_diff;
+            }  else if (currentWordIndex5 === 12) {
+                time_taken513 = time_diff;
+            }  else if (currentWordIndex5 === 13) {
+                time_taken514 = time_diff;
+            }
+
+    if (isCorrect5) {
+        currentWordIndex5++;
+
+        if (currentWordIndex5 < wordList5.length) {
+            displayNextWord5();
+            start_time5 = new Date().getTime();
+        } else {
+            document.getElementById('testPage5').classList.add('hidden');
+            document.getElementById('instructionsPage6').classList.remove('hidden');
+            
+        }
+    }
+}
+
+</script>
+
+
+
+
+
+    
+</script>
+<!-- イントロダクション6 -->
+
+<div id="instructionsPage6" class="hidden">
+    <h1>6実験の説明</h1>
+
+    <div id="page8">
+        <p>① こんにちは</p>
+        <button onclick="startCountdown6()">実験を開始する</button>
+    </div>
+
+    </div>
+</div>
+
+<script>
+    function showInstructions6() {
+        attendanceNumber = document.getElementById('attendance_number').value;
+        document.getElementById('indexPage').classList.add('hidden');
+        document.getElementById('instructionsPage2').classList.remove('hidden');
+    }
+</script>
+
+
+
+<!-- カウントダウン6 -->
+
+<div id="countdownPage6" class="hidden">
+    <div id="countdown6">3</div>
+</div>
+
+<script>
+    function startCountdown6() {
+        document.getElementById('instructionsPage6').classList.add('hidden');
+        document.getElementById('countdownPage6').classList.remove('hidden');
+
+        let count = 3;
+        function countdown6() {
+            if (count > 0) {
+                document.getElementById('countdown6').textContent = count;
+                count--;
+                setTimeout(countdown6, 1000);
+            } else {
+                document.getElementById('countdownPage6').classList.add('hidden');
+                document.getElementById('testPage6').classList.remove('hidden');
+                displayNextWord6();
+            }
+        }
+        countdown6();
+    }
+</script>
+
+<!-- テスト6 -->
+
+<div id="testPage6" class="hidden">
+    <p id="wordDisplay6"></p>
+    <div class="buttonContainer6">
+        <button onclick="submitAnswer6('自分')">自分</button>
+        <button onclick="submitAnswer6('他人')">他人</button>
+    </div>
+</div>
+
+<script>
+    let currentWordIndex6 = 0;
+    var wordList6 = [
+            { word: "中学生", correctChoice: "自分" },
+            { word: "教師", correctChoice: "他人" },
+            { word: "生徒", correctChoice: "自分" },
+            { word: "他者", correctChoice: "他人" },
+            { word: "中学生", correctChoice: "自分" },
+            { word: "教師", correctChoice: "他人" },
+            { word: "生徒", correctChoice: "自分" },
+            { word: "他者", correctChoice: "他人" },
+            { word: "中学生", correctChoice: "自分" },
+            { word: "教師", correctChoice: "他人" },
+            { word: "生徒", correctChoice: "自分" },
+            { word: "他者", correctChoice: "他人" },
+            { word: "中学生", correctChoice: "自分" },
+    ];
+
+    function displayNextWord6() {
+        start_time6 = new Date().getTime()
+        document.getElementById('wordDisplay6').innerText = wordList6[currentWordIndex6].word;
+    }
+
+
+
+
+function submitAnswer6(choice) {
+    const correctChoice = wordList6[currentWordIndex6].correctChoice;
+        const isCorrect6 = choice === correctChoice;
+        end_time6 = new Date().getTime()
+        const time_diff = (end_time6 - start_time6) / 1000;
+     
+
+        if (currentWordIndex6 === 0) {
+                time_taken61 = time_diff;
+            } else if (currentWordIndex6 === 1) {
+                time_taken62 = time_diff;
+            } else if (currentWordIndex6 === 2) {
+                time_taken63 = time_diff;
+            } else if (currentWordIndex6 === 3) {
+                time_taken64 = time_diff;
+            } else if (currentWordIndex6 === 4) {
+                time_taken65 = time_diff;
+            } else if (currentWordIndex6 === 5) {
+                time_taken66 = time_diff;
+            }  else if (currentWordIndex6 === 6) {
+                time_taken67 = time_diff;
+            }  else if (currentWordIndex6 === 7) {
+                time_taken68 = time_diff;
+            }  else if (currentWordIndex6 === 8) {
+                time_taken69 = time_diff;
+            }  else if (currentWordIndex6 === 9) {
+                time_taken610 = time_diff;
+            }  else if (currentWordIndex6 === 10) {
+                time_taken611 = time_diff;
+            }  else if (currentWordIndex6 === 11) {
+                time_taken612 = time_diff;
+            }  else if (currentWordIndex6 === 12) {
+                time_taken613 = time_diff;
+            }  else if (currentWordIndex6 === 13) {
+                time_taken614 = time_diff;
+            }
+
+    if (isCorrect6) {
+        currentWordIndex6++;
+
+        if (currentWordIndex6 < wordList6.length) {
+            displayNextWord6();
+            start_time6 = new Date().getTime();
+        } else {
+            document.getElementById('testPage6').classList.add('hidden');
+            document.getElementById('instructionsPage7').classList.remove('hidden');
+            
+        }
+    }
+}
+
+</script>
+
+
+</script>
+<!-- イントロダクション7 -->
+
+<div id="instructionsPage7" class="hidden">
+    <h1>7実験の説明</h1>
+
+    <div id="page8">
+        <p>① こんにちは</p>
+        <button onclick="startCountdown7()">実験を開始する</button>
+    </div>
+
+    </div>
+</div>
+
+<script>
+    function showInstructions7() {
+        attendanceNumber = document.getElementById('attendance_number').value;
+        document.getElementById('indexPage').classList.add('hidden');
+        document.getElementById('instructionsPage2').classList.remove('hidden');
+    }
+</script>
+
+
+
+<!-- カウントダウン7 -->
+
+<div id="countdownPage7" class="hidden">
+    <div id="countdown7">3</div>
+</div>
+
+<script>
+    function startCountdown7() {
+        document.getElementById('instructionsPage7').classList.add('hidden');
+        document.getElementById('countdownPage7').classList.remove('hidden');
+
+        let count = 3;
+        function countdown7() {
+            if (count > 0) {
+                document.getElementById('countdown7').textContent = count;
+                count--;
+                setTimeout(countdown7, 1000);
+            } else {
+                document.getElementById('countdownPage7').classList.add('hidden');
+                document.getElementById('testPage7').classList.remove('hidden');
+                displayNextWord7();
+            }
+        }
+        countdown7();
+    }
+</script>
+
+<!-- テスト7 -->
+
+<div id="testPage7" class="hidden">
+    <p id="wordDisplay7"></p>
+    <div class="buttonContainer7">
+        <button onclick="submitAnswer7('自分')">自分</button>
+        <button onclick="submitAnswer7('他人')">他人</button>
+    </div>
+</div>
+
+<script>
+    let currentWordIndex7 = 0;
+    var wordList7 = [
+    { word: "中学生", correctChoice: "自分" },
+            { word: "教師", correctChoice: "他人" },
+            { word: "生徒", correctChoice: "自分" },
+            { word: "他者", correctChoice: "他人" },
+            { word: "中学生", correctChoice: "自分" },
+            { word: "教師", correctChoice: "他人" },
+            { word: "生徒", correctChoice: "自分" },
+            { word: "他者", correctChoice: "他人" },
+            { word: "中学生", correctChoice: "自分" },
+            { word: "教師", correctChoice: "他人" },
+            { word: "生徒", correctChoice: "自分" },
+            { word: "他者", correctChoice: "他人" },
+            { word: "中学生", correctChoice: "自分" }
+    ];
+
+    function displayNextWord7() {
+        start_time7 = new Date().getTime()
+        document.getElementById('wordDisplay7').innerText = wordList7[currentWordIndex7].word;
+    }
+
+
+function submitAnswer7(choice) {
+    const correctChoice = wordList7[currentWordIndex7].correctChoice;
+        const isCorrect7 = choice === correctChoice;
+        end_time7 = new Date().getTime()
+        const time_diff = (end_time7 - start_time7) / 1000;
+     
+
+        if (currentWordIndex7 === 0) {
+                time_taken71 = time_diff;
+            } else if (currentWordIndex7 === 1) {
+                time_taken72 = time_diff;
+            } else if (currentWordIndex7 === 2) {
+                time_taken73 = time_diff;
+            } else if (currentWordIndex7 === 3) {
+                time_taken74 = time_diff;
+            } else if (currentWordIndex7 === 4) {
+                time_taken75 = time_diff;
+            } else if (currentWordIndex7 === 5) {
+                time_taken76 = time_diff;
+            }  else if (currentWordIndex7 === 6) {
+                time_taken77 = time_diff;
+            }  else if (currentWordIndex7 === 7) {
+                time_taken78 = time_diff;
+            }  else if (currentWordIndex7 === 8) {
+                time_taken79 = time_diff;
+            }  else if (currentWordIndex7 === 9) {
+                time_taken710 = time_diff;
+            }  else if (currentWordIndex7 === 10) {
+                time_taken711 = time_diff;
+            }  else if (currentWordIndex7 === 11) {
+                time_taken712 = time_diff;
+            }  else if (currentWordIndex7 === 12) {
+                time_taken713 = time_diff;
+            }  else if (currentWordIndex7 === 13) {
+                time_taken714 = time_diff;
+            }
+
+    if (isCorrect7) {
+        currentWordIndex7++;
+
+        if (currentWordIndex7 < wordList7.length) {
+            displayNextWord7();
+            start_time7 = new Date().getTime();
+        } else {
+            document.getElementById('testPage7').classList.add('hidden');
+            // document.getElementById('resultPage').classList.remove('hidden');
+        showResult();    
+        }
+    }
+    
+}
+//    // 最初の単語を表示
+//    displayNextWord();
+
+</script>
+
+
+
+
 
     <!-- 結果 -->
 
     <div id="resultPage" class="hidden">
         <p>出席番号: <span id="resultAttendanceNumber"></span></p>
-        <p>時間: <span id="resultTimeTaken"></span>秒</p>
-        <p>時間1: <span id="resultTimeTaken1"></span>秒</p>
-        <p>時間2: <span id="resultTimeTaken2"></span>秒</p>
-        <p>時間3: <span id="resultTimeTaken3"></span>秒</p>
-        <p>時間4: <span id="resultTimeTaken4"></span>秒</p>
-        
-    </div>
-    <script>
-        function showResult() {
-            document.getElementById('testPage').classList.add('hidden');
-            document.getElementById('resultPage').classList.remove('hidden');
-            document.getElementById('resultAttendanceNumber').innerText = attendanceNumber;
-            document.getElementById('resultTimeTaken1').innerText = time_taken1.toFixed(3);
-            document.getElementById('resultTimeTaken2').innerText = time_taken2.toFixed(3);
-            document.getElementById('resultTimeTaken3').innerText = time_taken3.toFixed(3);
-            document.getElementById('resultTimeTaken4').innerText = time_taken4.toFixed(3);
-            
-        }
-    </script>
+        <p>1: <span id="resultTimeTaken31"></span></p>
+        <p>2: <span id="resultTimeTaken32"></span></p>
+        <p>3: <span id="resultTimeTaken33"></span></p>
+        <p>4: <span id="resultTimeTaken34"></span></p>
+        <p>5: <span id="resultTimeTaken35"></span></p>
+        <p>6: <span id="resultTimeTaken36"></span></p>
+        <p>7: <span id="resultTimeTaken37"></span></p>
+        <p>8: <span id="resultTimeTaken38"></span></p>
+        <p>9: <span id="resultTimeTaken39"></span></p>
+        <p>10: <span id="resultTimeTaken310"></span></p>
+        <p>11: <span id="resultTimeTaken311"></span></p>
+        <p>12: <span id="resultTimeTaken312"></span></p>
+        <p>13: <span id="resultTimeTaken313"></span></p>
+        <p>14: <span id="resultTimeTaken41"></span></p>
+        <p>15: <span id="resultTimeTaken42"></span></p>
+        <p>16: <span id="resultTimeTaken43"></span></p>
+        <p>17: <span id="resultTimeTaken44"></span></p>
+        <p>18: <span id="resultTimeTaken45"></span></p>
+        <p>19: <span id="resultTimeTaken46"></span></p>
+        <p>20: <span id="resultTimeTaken47"></span></p>
+        <p>21: <span id="resultTimeTaken48"></span></p>
+        <p>22: <span id="resultTimeTaken49"></span></p>
+        <p>23: <span id="resultTimeTaken410"></span></p>
+        <p>24: <span id="resultTimeTaken411"></span></p>
+        <p>25: <span id="resultTimeTaken412"></span></p>
+        <p>26: <span id="resultTimeTaken413"></span></p>
+        <p>27: <span id="resultTimeTaken61"></span></p>
+        <p>28: <span id="resultTimeTaken62"></span></p>
+        <p>29: <span id="resultTimeTaken63"></span></p>
+        <p>30: <span id="resultTimeTaken64"></span></p>
+        <p>31: <span id="resultTimeTaken65"></span></p>
+        <p>32: <span id="resultTimeTaken66"></span></p>
+        <p>33: <span id="resultTimeTaken67"></span></p>
+        <p>34: <span id="resultTimeTaken68"></span></p>
+        <p>35: <span id="resultTimeTaken69"></span></p>
+        <p>36: <span id="resultTimeTaken610"></span></p>
+        <p>37: <span id="resultTimeTaken611"></span></p>
+        <p>38: <span id="resultTimeTaken612"></span></p>
+        <p>39: <span id="resultTimeTaken613"></span></p>
+        <p>40: <span id="resultTimeTaken71"></span></p>
+        <p>41: <span id="resultTimeTaken72"></span></p>
+        <p>42: <span id="resultTimeTaken73"></span></p>
+        <p>43: <span id="resultTimeTaken74"></span></p>
+        <p>44: <span id="resultTimeTaken75"></span></p>
+        <p>45: <span id="resultTimeTaken76"></span></p>
+        <p>46: <span id="resultTimeTaken77"></span></p>
+        <p>47: <span id="resultTimeTaken78"></span></p>
+        <p>48: <span id="resultTimeTaken79"></span></p>
+        <p>49: <span id="resultTimeTaken710"></span></p>
+        <p>50: <span id="resultTimeTaken711"></span></p>
+        <p>51: <span id="resultTimeTaken712"></span></p>
+        <p>52: <span id="resultTimeTaken713"></span></p>
 
+       
     </div>
 
     <script>
         let attendanceNumber;
         
+        let time_taken1 = 0;
+        let start_time1;
+        let start_time2;
+        let time_taken2 = 0;
+        
 
-        function showInstructions() {
-            attendanceNumber = document.getElementById('attendance_number').value;
-            document.getElementById('indexPage').classList.add('hidden');
-            document.getElementById('instructionsPage').classList.remove('hidden');
+      
+        
+        function showResult() {
+            document.getElementById('testPage1').classList.add('hidden');
+            document.getElementById('resultPage').classList.remove('hidden');
+            document.getElementById('resultAttendanceNumber').innerText = attendanceNumber;
+            document.getElementById('resultTimeTaken31').innerText = time_taken31.toFixed(3);
+            document.getElementById('resultTimeTaken32').innerText = time_taken32.toFixed(3);
+            document.getElementById('resultTimeTaken33').innerText = time_taken33.toFixed(3);
+            document.getElementById('resultTimeTaken34').innerText = time_taken34.toFixed(3);
+            document.getElementById('resultTimeTaken35').innerText = time_taken35.toFixed(3);
+            document.getElementById('resultTimeTaken36').innerText = time_taken36.toFixed(3);
+            document.getElementById('resultTimeTaken37').innerText = time_taken37.toFixed(3);
+            document.getElementById('resultTimeTaken38').innerText = time_taken38.toFixed(3);
+            document.getElementById('resultTimeTaken39').innerText = time_taken39.toFixed(3);
+            document.getElementById('resultTimeTaken310').innerText = time_taken310.toFixed(3);
+            document.getElementById('resultTimeTaken311').innerText = time_taken311.toFixed(3);
+            document.getElementById('resultTimeTaken312').innerText = time_taken312.toFixed(3);
+            document.getElementById('resultTimeTaken313').innerText = time_taken313.toFixed(3);
+            document.getElementById('resultTimeTaken41').innerText = time_taken41.toFixed(3);
+            document.getElementById('resultTimeTaken42').innerText = time_taken42.toFixed(3);
+            document.getElementById('resultTimeTaken43').innerText = time_taken43.toFixed(3);
+            document.getElementById('resultTimeTaken44').innerText = time_taken44.toFixed(3);
+            document.getElementById('resultTimeTaken45').innerText = time_taken45.toFixed(3);
+            document.getElementById('resultTimeTaken46').innerText = time_taken46.toFixed(3);
+            document.getElementById('resultTimeTaken47').innerText = time_taken47.toFixed(3);
+            document.getElementById('resultTimeTaken48').innerText = time_taken48.toFixed(3);
+            document.getElementById('resultTimeTaken49').innerText = time_taken49.toFixed(3);
+            document.getElementById('resultTimeTaken410').innerText = time_taken410.toFixed(3);
+            document.getElementById('resultTimeTaken411').innerText = time_taken411.toFixed(3);
+            document.getElementById('resultTimeTaken412').innerText = time_taken412.toFixed(3);
+            document.getElementById('resultTimeTaken413').innerText = time_taken413.toFixed(3);
+            document.getElementById('resultTimeTaken61').innerText = time_taken61.toFixed(3);
+            document.getElementById('resultTimeTaken62').innerText = time_taken62.toFixed(3);
+            document.getElementById('resultTimeTaken63').innerText = time_taken63.toFixed(3);
+            document.getElementById('resultTimeTaken64').innerText = time_taken64.toFixed(3);
+            document.getElementById('resultTimeTaken65').innerText = time_taken65.toFixed(3);
+            document.getElementById('resultTimeTaken66').innerText = time_taken66.toFixed(3);
+            document.getElementById('resultTimeTaken67').innerText = time_taken67.toFixed(3);
+            document.getElementById('resultTimeTaken68').innerText = time_taken68.toFixed(3);
+            document.getElementById('resultTimeTaken69').innerText = time_taken69.toFixed(3);
+            document.getElementById('resultTimeTaken610').innerText = time_taken610.toFixed(3);
+            document.getElementById('resultTimeTaken611').innerText = time_taken611.toFixed(3);
+            document.getElementById('resultTimeTaken612').innerText = time_taken612.toFixed(3);
+            document.getElementById('resultTimeTaken613').innerText = time_taken613.toFixed(3);
+            document.getElementById('resultTimeTaken71').innerText = time_taken71.toFixed(3);
+            document.getElementById('resultTimeTaken72').innerText = time_taken72.toFixed(3);
+            document.getElementById('resultTimeTaken73').innerText = time_taken73.toFixed(3);
+            document.getElementById('resultTimeTaken74').innerText = time_taken74.toFixed(3);
+            document.getElementById('resultTimeTaken75').innerText = time_taken75.toFixed(3);
+            document.getElementById('resultTimeTaken76').innerText = time_taken76.toFixed(3);
+            document.getElementById('resultTimeTaken77').innerText = time_taken77.toFixed(3);
+            document.getElementById('resultTimeTaken78').innerText = time_taken78.toFixed(3);
+            document.getElementById('resultTimeTaken79').innerText = time_taken79.toFixed(3);
+            document.getElementById('resultTimeTaken710').innerText = time_taken710.toFixed(3);
+            document.getElementById('resultTimeTaken711').innerText = time_taken711.toFixed(3);
+            document.getElementById('resultTimeTaken712').innerText = time_taken712.toFixed(3);
+            document.getElementById('resultTimeTaken713').innerText = time_taken713.toFixed(3);
         }
+    </script>
 
-        function nextPage(pageNumber) {
-            document.getElementById('page' + pageNumber).classList.remove('hidden');
-            document.getElementById('page' + (pageNumber - 1)).classList.add('hidden');
-        }
+</body>
+</html>
 
-        function startCountdown() {
-            document.getElementById('instructionsPage').classList.add('hidden');
-            document.getElementById('countdownPage').classList.remove('hidden');
-
-            let count = 3;
-            function countdown() {
-                if (count > 0) {
-                    document.getElementById('countdown').textContent = count;
-                    count--;
-                    setTimeout(countdown, 1000);
-                } else {
-                    document.getElementById('countdownPage').classList.add('hidden');
-                    document.getElementById('testPage').classList.remove('hidden');
-                    displayNextWord();
-                }
-            }
-            countdown();
-        }
-
-        // function displayNextWord() {
-        //     document.getElementById('wordDisplay').innerText = wordList[currentWordIndex].word;
-        //     startTime = new Date().getTime() / 1000
-        // }
