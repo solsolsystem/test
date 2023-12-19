@@ -5,122 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Experiment - Index</title>
     <style>
-
-
-body {
-    margin: 0;
-    overflow-x: hidden;
-}
-
-/* 横画面時のスタイル */
-@media only screen and (orientation: landscape) {
-    body {
-        width: 100vw;
-        height: 100vh;
-    }
-}
-
-/* 縦画面時のスタイル */
-@media only screen and (orientation: portrait) {
-    body {
-        display: none; /* または他の適切なスタイルを指定して非表示にする */
-    }
-}
-#indexPage 
-{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        }
-    
-    label {
-            margin-bottom: 10px;
-        }
-
-    #attendance_number {
-            padding: 5px;
-            margin-bottom: 10px;
-        }
-
-     button {
-            background-color: yellow;
-            color: black;
-            padding: 8px 16px;
-            border: none;
-            cursor: pointer;
-        }
-
-        #instructionsPage1 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-}
-
-/* スタイルは必要に応じて追加 */
+   
 .hidden {
-    display: none;
-}
-
-/* 各ページのスタイル */
-#page1,
-#page2,
-#page3,
-#page4 {
-    text-align: center;
-}
-
-button {
-    margin-top: 20px; /* ボタンと説明文の間に余白を追加 */
-    padding: 10px 20px;
-    cursor: pointer;
-}
-#countdownPage1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-}
-
-#countdown1 {
-    font-size: 48px; /* 任意のフォントサイズ */
-    font-weight: bold;
-}
-
-#testPage1 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    text-align: center;
-}
-
-#wordDisplay1 {
-    font-size: 24px; /* 任意のフォントサイズ */
-    font-weight: bold;
-}
-
-.buttonContainer1 {
-    display: flex;
-    margin-top: 20px; /* ボタンとワードの間に余白を追加 */
-}
-
-button {
-    width: 80px; /* 任意の幅 */
-    height: 200px; /* 任意の高さ */
-    font-size: 18px; /* 任意のフォントサイズ */
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    margin: 0 10px; /* ボタン同士の間に余白を追加 */
-}
-
-
-
-        
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -128,35 +16,32 @@ button {
     <!-- インデックス -->
 
     <div id="indexPage">
-        <label for="attendance_number">やまP眠いよ:</label>
+        <label for="attendance_number">あなたの番号を入力してください</label>
         <input type="text" id="attendance_number" required>
-        <button onclick="showInstructions1()">パーン</button>
+        <button onclick="showInstructions1()">次に進む</button>
     </div>
 
     <!-- イントロダクション1 -->
 
     <div id="instructionsPage1" class="hidden">
-        <h1>1実験の説明</h1>
+        <h1></h1>
 
         <div id="page1">
-            <p>① こんにちは</p>
+            <p>これから画面中央に順番に単語が表示されます。左右のどちらの言葉と関係が深いか判断して分類してください</p>
             <button onclick="nextPage1(2)">次に進む</button>
         </div>
     
         <div id="page2" class="hidden">
-            <p>② こんちは</p>
+            <p>問題は第７ブロックまであります。１ブロック１３単語です。回答にかかる時間が研究に大きく関係します。集中して回答してください。よろしくお願いいたします。</p>
             <button onclick="nextPage1(3)">次に進む</button>
         </div>
     
         <div id="page3" class="hidden">
-            <p>③ こんにちわわ</p>
-            <button onclick="nextPage1(4)">次に進む</button>
+            <p>第１ブロックを始めます。できるだけ早く正確に答えてください。スタートボタンを押して３秒後に開始されます。</p>
+            <button onclick="startCountdown1()">スタート</button>
         </div>
     
-        <div id="page4" class="hidden">
-            <p>④ こんちくび</p>
-            <button onclick="startCountdown1()">実験を開始する</button>
-        </div>
+       
     </div>
 
     <script>
@@ -208,25 +93,25 @@ button {
         <p id="wordDisplay1"></p>
         <div class="buttonContainer1">
             <button onclick="submitAnswer1('自分')">自分</button>
-            <button onclick="submitAnswer1('他人')">他人</button>
+            <button onclick="submitAnswer1('他者')">他人</button>
         </div>
     </div>
 
     <script>
         let currentWordIndex1 = 0;
         var wordList1 = [
-            { word: "中学生", correctChoice: "自分" },
-            { word: "教師", correctChoice: "他人" },
+            { word: "あなた", correctChoice: "自分" },
+            { word: "教師", correctChoice: "他者" },
             { word: "生徒", correctChoice: "自分" },
-            { word: "他者", correctChoice: "他人" },
-            { word: "中学生", correctChoice: "自分" },
-            { word: "教師", correctChoice: "他人" },
-            { word: "生徒", correctChoice: "自分" },
-            { word: "他者", correctChoice: "他人" },
-            { word: "中学生", correctChoice: "自分" },
-            { word: "教師", correctChoice: "他人" },
-            { word: "生徒", correctChoice: "自分" },
-            { word: "他者", correctChoice: "他人" },
+            { word: "私たち", correctChoice: "自分" },
+            { word: "未成年", correctChoice: "自分" },
+            { word: "自分", correctChoice: "自分" },
+            { word: "他人", correctChoice: "他者" },
+            { word: "他者", correctChoice: "他者" },
+            { word: "大学生", correctChoice: "他者" },
+            { word: "成人", correctChoice: "他者" },
+            { word: "私", correctChoice: "自分" },
+            { word: "彼ら", correctChoice: "他者" },
             { word: "中学生", correctChoice: "自分" },
             
         ];
@@ -294,11 +179,11 @@ button {
     <!-- イントロダクション2 -->
 
     <div id="instructionsPage2" class="hidden">
-        <h1>2実験の説明</h1>
+        <h1></h1>
 
         <div id="page5">
-            <p>① こんにちは</p>
-            <button onclick="startCountdown2()">実験を開始する</button>
+            <p>第２ブロックを始めます。できるだけ早く正確に答えてください。スタートボタンを押して３秒後に開始されます。</p>
+            <button onclick="startCountdown2()">スタート</button>
         </div>
     
         </div>
@@ -346,27 +231,27 @@ button {
     <div id="testPage2" class="hidden">
         <p id="wordDisplay2"></p>
         <div class="buttonContainer2">
-            <button onclick="submitAnswer2('自分')">自分</button>
-            <button onclick="submitAnswer2('他人')">他人</button>
+            <button onclick="submitAnswer2('攻撃的')">攻撃的</button>
+            <button onclick="submitAnswer2('友好的')">友好的</button>
         </div>
     </div>
 
     <script>
         let currentWordIndex2 = 0;
         var wordList2 = [
-            { word: "中学生", correctChoice: "自分" },
-            { word: "教師", correctChoice: "他人" },
-            { word: "生徒", correctChoice: "自分" },
-            { word: "他者", correctChoice: "他人" },
-            { word: "中学生", correctChoice: "自分" },
-            { word: "教師", correctChoice: "他人" },
-            { word: "生徒", correctChoice: "自分" },
-            { word: "他者", correctChoice: "他人" },
-            { word: "中学生", correctChoice: "自分" },
-            { word: "教師", correctChoice: "他人" },
-            { word: "生徒", correctChoice: "自分" },
-            { word: "他者", correctChoice: "他人" },
-            { word: "中学生", correctChoice: "自分" },
+            { word: "高め合う", correctChoice: "友好的" },
+            { word: "脅す", correctChoice: "攻撃的" },
+            { word: "助ける", correctChoice: "友好的" },
+            { word: "協力する", correctChoice: "友好的" },
+            { word: "殴る", correctChoice: "攻撃的" },
+            { word: "元気づける", correctChoice: "友好的" },
+            { word: "悪口を言う", correctChoice: "攻撃的" },
+            { word: "バカにする", correctChoice: "攻撃的" },
+            { word: "語り合う", correctChoice: "友好的" },
+            { word: "仕返しをする", correctChoice: "攻撃的" },
+            { word: "励ます", correctChoice: "友好的" },
+            { word: "大声で怒る", correctChoice: "攻撃的" },
+            { word: "援助する", correctChoice: "友好的" },
         ];
 
         function displayNextWord2() {
@@ -434,11 +319,11 @@ button {
 <!-- イントロダクション3 -->
 
 <div id="instructionsPage3" class="hidden">
-    <h1>3実験の説明</h1>
+    <h1></h1>
 
     <div id="page6">
-        <p>① こんにちは</p>
-        <button onclick="startCountdown3()">実験を開始する</button>
+        <p>第３ブロックを始めます。できるだけ早く正確に答えてください。スタートボタンを押して３秒後に開始されます。</p>
+        <button onclick="startCountdown3()">スタート</button>
     </div>
 
     </div>
@@ -486,27 +371,27 @@ button {
 <div id="testPage3" class="hidden">
     <p id="wordDisplay3"></p>
     <div class="buttonContainer3">
-        <button onclick="submitAnswer3('自分')">自分</button>
-        <button onclick="submitAnswer3('他人')">他人</button>
+        <button onclick="submitAnswer3('自分  攻撃的')">自分  攻撃的</button>
+        <button onclick="submitAnswer3('他者  友好的')">他者  友好的</button>
     </div>
 </div>
 
 <script>
     let currentWordIndex3 = 0;
     var wordList3 = [
-    { word: "中学生", correctChoice: "自分" },
-            { word: "教師", correctChoice: "他人" },
-            { word: "生徒", correctChoice: "自分" },
-            { word: "他者", correctChoice: "他人" },
-            { word: "中学生", correctChoice: "自分" },
-            { word: "教師", correctChoice: "他人" },
-            { word: "生徒", correctChoice: "自分" },
-            { word: "他者", correctChoice: "他人" },
-            { word: "中学生", correctChoice: "自分" },
-            { word: "教師", correctChoice: "他人" },
-            { word: "生徒", correctChoice: "自分" },
-            { word: "他者", correctChoice: "他人" },
-            { word: "中学生", correctChoice: "自分" },
+    { word: "中学生", correctChoice: "自分  攻撃的" },
+            { word: "私たち", correctChoice: "自分  攻撃的" },
+            { word: "教師", correctChoice: "他者  友好的" },
+            { word: "悪口を言う", correctChoice: "自分  攻撃的" },
+            { word: "大学生", correctChoice: "他者  友好的" },
+            { word: "助ける", correctChoice: "他者  友好的" },
+            { word: "成人", correctChoice: "他者  友好的" },
+            { word: "中学生", correctChoice: "自分  攻撃的" },
+            { word: "脅す", correctChoice: "自分  攻撃的" },
+            { word: "他人", correctChoice: "他者  友好的" },
+            { word: "生徒", correctChoice: "自分  攻撃的" },
+            { word: "彼ら", correctChoice: "他者  友好的" },
+            { word: "バカにする", correctChoice: "自分  攻撃的" },
     ];
 
     function displayNextWord3() {
@@ -579,11 +464,11 @@ function submitAnswer3(choice) {
 <!-- イントロダクション4 -->
 
 <div id="instructionsPage4" class="hidden">
-    <h1>4実験の説明</h1>
+    <h1></h1>
 
     <div id="page6">
-        <p>① こんにちは</p>
-        <button onclick="startCountdown4()">実験を開始する</button>
+        <p>第４ブロックを始めます。できるだけ早く正確に答えてください。スタートボタンを押して３秒後に開始されます。</p>
+        <button onclick="startCountdown4()">スタート</button>
     </div>
 
     </div>
@@ -631,27 +516,27 @@ function submitAnswer3(choice) {
 <div id="testPage4" class="hidden">
     <p id="wordDisplay4"></p>
     <div class="buttonContainer4">
-        <button onclick="submitAnswer4('自分')">自分</button>
-        <button onclick="submitAnswer4('他人')">他人</button>
+        <button onclick="submitAnswer4('自分  攻撃的')">自分  攻撃的</button>
+        <button onclick="submitAnswer4('他者  友好的')">他者  友好的</button>
     </div>
 </div>
 
 <script>
     let currentWordIndex4 = 0;
     var wordList4 = [
-            { word: "中学生", correctChoice: "自分" },
-            { word: "教師", correctChoice: "他人" },
-            { word: "生徒", correctChoice: "自分" },
-            { word: "他者", correctChoice: "他人" },
-            { word: "中学生", correctChoice: "自分" },
-            { word: "教師", correctChoice: "他人" },
-            { word: "生徒", correctChoice: "自分" },
-            { word: "他者", correctChoice: "他人" },
-            { word: "中学生", correctChoice: "自分" },
-            { word: "教師", correctChoice: "他人" },
-            { word: "生徒", correctChoice: "自分" },
-            { word: "他者", correctChoice: "他人" },
-            { word: "中学生", correctChoice: "自分" },
+            { word: "他人", correctChoice: "他者  友好的" },
+            { word: "私たち", correctChoice: "自分  攻撃的" },
+            { word: "殴る", correctChoice: "自分  攻撃的" },
+            { word: "未成年", correctChoice: "自分  攻撃的" },
+            { word: "元気づける", correctChoice: "他者  友好的" },
+            { word: "大声で怒る", correctChoice: "自分  攻撃的" },
+            { word: "大学生", correctChoice: "他者  友好的" },
+            { word: "私", correctChoice: "自分  攻撃的" },
+            { word: "援助する", correctChoice: "他者  友好的" },
+            { word: "他人", correctChoice: "他者  友好的" },
+            { word: "自分", correctChoice: "自分  攻撃的" },
+            { word: "協力する", correctChoice: "他者  友好的" },
+            { word: "彼ら", correctChoice: "他者  友好的" },
     ];
 
     function displayNextWord4() {
@@ -715,11 +600,6 @@ function submitAnswer4(choice) {
 
 </script>
 
-
-
-
-
-    
 </script>
 <!-- イントロダクション5 -->
 
@@ -727,8 +607,8 @@ function submitAnswer4(choice) {
     <h1>5実験の説明</h1>
 
     <div id="page7">
-        <p>① こんにちは</p>
-        <button onclick="startCountdown5()">実験を開始する</button>
+        <p>第５ブロックを始めます。できるだけ早く正確に答えてください。スタートボタンを押して３秒後に開始されます。</p>
+        <button onclick="startCountdown5()">スタート</button>
     </div>
 
     </div>
@@ -776,27 +656,27 @@ function submitAnswer4(choice) {
 <div id="testPage5" class="hidden">
     <p id="wordDisplay5"></p>
     <div class="buttonContainer5">
-        <button onclick="submitAnswer5('自分')">自分</button>
-        <button onclick="submitAnswer5('他人')">他人</button>
+        <button onclick="submitAnswer5('攻撃的')">攻撃的</button>
+        <button onclick="submitAnswer5('友好的')">友好的</button>
     </div>
 </div>
 
 <script>
     let currentWordIndex5 = 0;
     var wordList5 = [
-            { word: "中学生", correctChoice: "自分" },
-            { word: "教師", correctChoice: "他人" },
-            { word: "生徒", correctChoice: "自分" },
-            { word: "他者", correctChoice: "他人" },
-            { word: "中学生", correctChoice: "自分" },
-            { word: "教師", correctChoice: "他人" },
-            { word: "生徒", correctChoice: "自分" },
-            { word: "他者", correctChoice: "他人" },
-            { word: "中学生", correctChoice: "自分" },
-            { word: "教師", correctChoice: "他人" },
-            { word: "生徒", correctChoice: "自分" },
-            { word: "他者", correctChoice: "他人" },
-            { word: "中学生", correctChoice: "自分" },
+            { word: "殴る", correctChoice: "攻撃的" },
+            { word: "元気づける", correctChoice: "友好的" },
+            { word: "悪口を言う", correctChoice: "攻撃的" },
+            { word: "語り合う", correctChoice: "友好的" },
+            { word: "大声で怒る", correctChoice: "攻撃的" },
+            { word: "仕返しをする", correctChoice: "攻撃的" },
+            { word: "協力する", correctChoice: "友好的" },
+            { word: "脅す", correctChoice: "攻撃的" },
+            { word: "援助する", correctChoice: "友好的" },
+            { word: "高め合う", correctChoice: "友好的" },
+            { word: "バカにする", correctChoice: "攻撃的" },
+            { word: "助け合う", correctChoice: "友好的" },
+            { word: "助ける", correctChoice: "友好的" },
     ];
 
     function displayNextWord5() {
@@ -869,11 +749,11 @@ function submitAnswer5(choice) {
 <!-- イントロダクション6 -->
 
 <div id="instructionsPage6" class="hidden">
-    <h1>6実験の説明</h1>
+    <h1></h1>
 
     <div id="page8">
-        <p>① こんにちは</p>
-        <button onclick="startCountdown6()">実験を開始する</button>
+        <p>第６ブロックを始めます。できるだけ早く正確に答えてください。スタートボタンを押して３秒後に開始されます。</p>
+        <button onclick="startCountdown6()">スタート</button>
     </div>
 
     </div>
@@ -921,27 +801,27 @@ function submitAnswer5(choice) {
 <div id="testPage6" class="hidden">
     <p id="wordDisplay6"></p>
     <div class="buttonContainer6">
-        <button onclick="submitAnswer6('自分')">自分</button>
-        <button onclick="submitAnswer6('他人')">他人</button>
+        <button onclick="submitAnswer6('自分  友好的')">自分  友好的</button>
+        <button onclick="submitAnswer6('他者  攻撃的')">他人  攻撃的</button>
     </div>
 </div>
 
 <script>
     let currentWordIndex6 = 0;
     var wordList6 = [
-            { word: "中学生", correctChoice: "自分" },
-            { word: "教師", correctChoice: "他人" },
-            { word: "生徒", correctChoice: "自分" },
-            { word: "他者", correctChoice: "他人" },
-            { word: "中学生", correctChoice: "自分" },
-            { word: "教師", correctChoice: "他人" },
-            { word: "生徒", correctChoice: "自分" },
-            { word: "他者", correctChoice: "他人" },
-            { word: "中学生", correctChoice: "自分" },
-            { word: "教師", correctChoice: "他人" },
-            { word: "生徒", correctChoice: "自分" },
-            { word: "他者", correctChoice: "他人" },
-            { word: "中学生", correctChoice: "自分" },
+            { word: "生徒", correctChoice: "自分  友好的" },
+            { word: "私たち", correctChoice: "自分  友好的" },
+            { word: "殴る", correctChoice: "他者  攻撃的" },
+            { word: "元気づける", correctChoice: "自分  友好的" },
+            { word: "語り合う", correctChoice: "自分  友好的" },
+            { word: "教師", correctChoice: "他者  攻撃的" },
+            { word: "大声で怒る", correctChoice: "他者  攻撃的" },
+            { word: "援助する", correctChoice: "自分  友好的" },
+            { word: "中学生", correctChoice: "自分  友好的" },
+            { word: "脅す", correctChoice: "他者  攻撃的" },
+            { word: "協力する", correctChoice: "自分  友好的" },
+            { word: "仕返しをする", correctChoice: "他者  攻撃的" },
+            { word: "成人", correctChoice: "他者  攻撃的" },
     ];
 
     function displayNextWord6() {
@@ -1010,11 +890,11 @@ function submitAnswer6(choice) {
 <!-- イントロダクション7 -->
 
 <div id="instructionsPage7" class="hidden">
-    <h1>7実験の説明</h1>
+    <h1></h1>
 
     <div id="page8">
-        <p>① こんにちは</p>
-        <button onclick="startCountdown7()">実験を開始する</button>
+        <p>第７ブロックを始めます。できるだけ早く正確に答えてください。スタートボタンを押して３秒後に開始されます。</p>
+        <button onclick="startCountdown7()">スタート</button>
     </div>
 
     </div>
@@ -1062,27 +942,27 @@ function submitAnswer6(choice) {
 <div id="testPage7" class="hidden">
     <p id="wordDisplay7"></p>
     <div class="buttonContainer7">
-        <button onclick="submitAnswer7('自分')">自分</button>
-        <button onclick="submitAnswer7('他人')">他人</button>
+        <button onclick="submitAnswer7('自分  友好的')">自分  友好的</button>
+        <button onclick="submitAnswer7('他者  攻撃的')">他人  攻撃的</button>
     </div>
 </div>
 
 <script>
     let currentWordIndex7 = 0;
     var wordList7 = [
-    { word: "中学生", correctChoice: "自分" },
-            { word: "教師", correctChoice: "他人" },
-            { word: "生徒", correctChoice: "自分" },
-            { word: "他者", correctChoice: "他人" },
-            { word: "中学生", correctChoice: "自分" },
-            { word: "教師", correctChoice: "他人" },
-            { word: "生徒", correctChoice: "自分" },
-            { word: "他者", correctChoice: "他人" },
-            { word: "中学生", correctChoice: "自分" },
-            { word: "教師", correctChoice: "他人" },
-            { word: "生徒", correctChoice: "自分" },
-            { word: "他者", correctChoice: "他人" },
-            { word: "中学生", correctChoice: "自分" }
+            { word: "自分", correctChoice: "自分  友好的" },
+            { word: "仕返しをする", correctChoice: "他者  攻撃的" },
+            { word: "生徒", correctChoice: "自分  友好的" },
+            { word: "励ます", correctChoice: "自分  友好的" },
+            { word: "バカにする", correctChoice: "他者  攻撃的" },
+            { word: "未成年", correctChoice: "自分  友好的" },
+            { word: "元気づける", correctChoice: "自分  友好的" },
+            { word: "他者", correctChoice: "他者  攻撃的" },
+            { word: "大声で怒る", correctChoice: "他者  攻撃的" },
+            { word: "私", correctChoice: "自分  友好的" },
+            { word: "援助する", correctChoice: "自分  友好的" },
+            { word: "彼ら", correctChoice: "他者  攻撃的" },
+            { word: "殴る", correctChoice: "他者  攻撃的" }
     ];
 
     function displayNextWord7() {
@@ -1283,4 +1163,3 @@ function submitAnswer7(choice) {
 
 </body>
 </html>
-
